@@ -2,7 +2,11 @@
 class PagesController extends Controller{
     
     function view($nom){
-        echo "la page demander est : ".$nom;
+        $this->set(array(
+            'phrase' => 'Salut',
+            'nom' => 'Badreddine'
+        ));
+        $this->render('index');
     }
 
 }
