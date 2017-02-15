@@ -1,8 +1,8 @@
 <?php
 class PagesController extends Controller{
     
-    function view(){
-        echo "Ca marche";
+    function view($nom){
+        echo "la page demander est : ".$nom;
     }
 
 }

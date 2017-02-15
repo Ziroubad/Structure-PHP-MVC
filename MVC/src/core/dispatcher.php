@@ -8,8 +8,9 @@ class Dispatcher{
         // Objet qui récupere URL $request
         $this->request = new Request();
         Router::parse($this->request->url, $this->request);
+        //instancier mon controller
         $controller = $this->loadController();
-        $controller->view();
+        call_user_func_array(array($controller, $this->request->action), $this->request->params);
     }
 
     function loadController(){
