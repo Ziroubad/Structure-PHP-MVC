@@ -1,12 +1,6 @@
 <?php
 class PagesController extends Controller{
-    
-    function view($nom){
-        $this->set(array(
-            'phrase' => 'Salut',
-            'nom' => 'Badreddine'
-        ));
+    function index(){
         $this->render('index');
     }
-
 }
