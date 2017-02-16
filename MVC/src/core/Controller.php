@@ -5,12 +5,19 @@ class Controller{
     private $vars = array();
     public $layout= 'default' ;
     private $rendered = False;
-
+    
+    /**
+    * Constructeur
+    * @param $request Objet request de notre application
+    **/
     function __construct($request){
         $this->request = $request;
     }
 
-    //rendre les vues
+    /**
+    * Permet de rendre une vue
+    * @param $view Fichier à rendre (chemin depuis view ou nom de la vue)
+    **/
     public function render($view){
         if($this->rendered){ return false;}
         extract($this->vars);
@@ -26,7 +33,11 @@ class Controller{
         $this->rendered = True;
     }
 
-    //function return la contenu de la page default
+    /**
+    * Permet de parser un ou plusieurs variable à la vue
+    * @param $key nom de la variable ou tableau de variables
+    * @param $value Valeur de la variable
+    **/
     public function set($key, $value=null){
         if(is_array($key)){
             $this->vars += $key;
@@ -35,6 +46,18 @@ class Controller{
         }
         
     }
+
+    /**
+    * Permet de charger un model
+    **/
+    function loadModel($name){
+        $file = ROOT.DS.'model'.DS.$name.'.php';
+        require_once($file);
+        if(!(isset($this->$name))){
+            $this->$name = new $name();
+        }
+    }
+
 }
 
 ?>
